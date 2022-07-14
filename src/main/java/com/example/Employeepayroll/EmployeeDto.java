@@ -13,12 +13,13 @@ public class EmployeeDto {
 	        this.salary = salary;
 	    }
 
-	    public String getEmployee_name() {
+
+	    public String getName() {
 	        return name;
 	    }
 
-	    public void setEmployee_name(String employee_name) {
-	        this.name = employee_name;
+	    public void setName(String name) {
+	        this.name = name;
 	    }
 
 	    public String getGender() {
@@ -45,5 +46,4 @@ public class EmployeeDto {
 	        this.salary = salary;
 	    }
 	}
-
-
+	   
