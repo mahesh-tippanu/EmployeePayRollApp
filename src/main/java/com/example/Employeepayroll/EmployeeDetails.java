@@ -5,69 +5,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.example.Dto.EmployeeDto;
+
 @Entity
 public class EmployeeDetails {
 	    @Id
 	    @GeneratedValue
-	    @Column(name = "emp_id", nullable = false)
-	    private Long emp_id;
+//	    @Column(name = "emp_id", nullable = false)
+//	    private Long emp_id;
+	    int id;
 	    
-	    public EmployeeDetails(EmployeeDetails employeeDetails) {
-	        this.firstName=employeeDetails.firstName;
-	        this.lastName=employeeDetails.lastName;
-	        this.address=employeeDetails.address;
-	        this.salary=employeeDetails.salary;
+	    String name;
+	    Long salary;
+	    String department;
+	    String gender;
+	    
+	    public EmployeeDetails(int id, EmployeeDto employeeDTO) {
+	        this.id=id;
+	    	this.name=EmployeeDto.name;
+	        this.department=EmployeeDto.department;
+	        this.salary=EmployeeDto.salary;
 	    }
 
 	    public EmployeeDetails() {
 	    }
-
-	    public EmployeeDetails(Long id) {
-	        this.emp_id=id;
+	    public String getDepartment() {
+	        return department;
 	    }
-	    public EmployeeDetails(EmployeeDetails employeeDetails, Long id) {
-	        this.firstName=employeeDetails.firstName;
-	        this.lastName=employeeDetails.lastName;
-	        this.address=employeeDetails.address;
-	        this.salary=employeeDetails.salary;
-	        this.emp_id=id;
+	    
+	    
+	    public void setDepartment(String department) {
+	        this.department = department;
 	    }
 
-	    public Long getEmp_id() {
-	        return emp_id;
+	    public String getGender() {
+	        return gender;
+	    }
+
+	    public void setGender(String gender) {
+	        this.gender = gender;
 	    }
 
 
-	    public void setEmp_id(Long emp_id) {
-	        this.emp_id = emp_id;
-	    }
-	    String firstName;
-	    String lastName;
-	    String address;
-	    Long salary;
-
-	    public String getFirstName() {
-	        return firstName;
+	    public String getName() {
+	        return name;
 	    }
 
-	    public void setFirstName(String firstName) {
-	        this.firstName = firstName;
-	    }
-
-	    public String getLastName() {
-	        return lastName;
-	    }
-
-	    public void setLastName(String lastName) {
-	        this.lastName = lastName;
-	    }
-
-	    public String getAddress() {
-	        return address;
-	    }
-
-	    public void setAddress(String address) {
-	        this.address = address;
+	    public void setName(String name) {
+	        this.name = name;
 	    }
 
 	    public Long getSalary() {
@@ -76,6 +61,15 @@ public class EmployeeDetails {
 
 	    public void setSalary(Long salary) {
 	        this.salary = salary;
+	    }
+
+	    public void setId(Integer id) {
+	        this.id = id;
+	    }
+
+
+	    public Integer getId() {
+	        return id;
 	    }
 	}
 
