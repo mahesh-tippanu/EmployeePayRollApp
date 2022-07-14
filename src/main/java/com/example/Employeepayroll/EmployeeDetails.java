@@ -2,17 +2,41 @@ package com.example.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class EmployeeDetails {
 	    @Id
+	    @GeneratedValue
 	    @Column(name = "emp_id", nullable = false)
 	    private Long emp_id;
+	    
+	    public EmployeeDetails(EmployeeDetails employeeDetails) {
+	        this.firstName=employeeDetails.firstName;
+	        this.lastName=employeeDetails.lastName;
+	        this.address=employeeDetails.address;
+	        this.salary=employeeDetails.salary;
+	    }
+
+	    public EmployeeDetails() {
+	    }
+
+	    public EmployeeDetails(Long id) {
+	        this.emp_id=id;
+	    }
+	    public EmployeeDetails(EmployeeDetails employeeDetails, Long id) {
+	        this.firstName=employeeDetails.firstName;
+	        this.lastName=employeeDetails.lastName;
+	        this.address=employeeDetails.address;
+	        this.salary=employeeDetails.salary;
+	        this.emp_id=id;
+	    }
 
 	    public Long getEmp_id() {
 	        return emp_id;
 	    }
+
 
 	    public void setEmp_id(Long emp_id) {
 	        this.emp_id = emp_id;
