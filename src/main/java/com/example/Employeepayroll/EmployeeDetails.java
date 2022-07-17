@@ -1,76 +1,42 @@
-package com.example.Model;
+package com.example.employeepayrollapplication.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.example.employeepayrollapplication.dto.EmployeeDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.example.Dto.EmployeeDto;
-
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class EmployeeDetails {
-	    @Id
-	    @GeneratedValue
-//	    @Column(name = "emp_id", nullable = false)
-//	    private Long emp_id;
-	    int id;
-	    
-	    String name;
-	    Long salary;
-	    String department;
-	    String gender;
-	    
-	    public EmployeeDetails(int id, EmployeeDto employeeDTO) {
-	        this.id=id;
-	    	this.name=EmployeeDto.name;
-	        this.department=EmployeeDto.department;
-	        this.salary=EmployeeDto.salary;
-	    }
+@Table(name = "employee_payroll")
+public @Data class EmployeeDetails {
+    @Id
+    @Column(name = "emp_id")
+    @GeneratedValue
+    int id;
+    @Column(name = "name")
+    private String name;
+    private Long salary;
+    private String gender;
+    private String profilePic;
+    private String note;
+    private LocalDate startDate;
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "emp_id"))
+    @ElementCollection
+    public List<String> department;
 
-	    public EmployeeDetails() {
-	    }
-	    public String getDepartment() {
-	        return department;
-	    }
-	    
-	    
-	    public void setDepartment(String department) {
-	        this.department = department;
-	    }
+    public EmployeeDetails(EmployeeDTO employeePayrollDTO) {
+        this.id=id;
+        this.name= employeePayrollDTO.name;
+        this.department=employeePayrollDTO.department;
+        this.gender=employeePayrollDTO.gender;
+        this.salary=employeePayrollDTO.salary;
+        this.startDate=employeePayrollDTO.startDate;
+        this.profilePic=employeePayrollDTO.profilePic;
+        this.note=employeePayrollDTO.note;
+    }
 
-	    public String getGender() {
-	        return gender;
-	    }
-
-	    public void setGender(String gender) {
-	        this.gender = gender;
-	    }
-
-
-	    public String getName() {
-	        return name;
-	    }
-
-	    public void setName(String name) {
-	        this.name = name;
-	    }
-
-	    public Long getSalary() {
-	        return salary;
-	    }
-
-	    public void setSalary(Long salary) {
-	        this.salary = salary;
-	    }
-
-	    public void setId(Integer id) {
-	        this.id = id;
-	    }
-
-
-	    public Integer getId() {
-	        return id;
-	    }
-	}
-
-
+}
